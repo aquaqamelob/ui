@@ -1,5 +1,4 @@
 import { Config } from "tailwindcss"
-
 import { shadcnPlugin } from "./lib/shadcn-plugin"
 
 /** @type {import('tailwindcss').Config} */

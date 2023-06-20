@@ -1,5 +1,3 @@
-// @ts-ignore
-import animatePlugin from "tailwindcss-animate"
 import { fontFamily } from "tailwindcss/defaultTheme"
 import plugin from "tailwindcss/plugin"
 
@@ -47,7 +45,7 @@ export const shadcnPlugin = plugin(
         "--accent": "210 8% 9%",
         "--accent-foreground": "210 40% 98%",
 
-        "--popover": "224 71% 4%",
+        "--popover": "210 8% 9%",
         "--popover-foreground": "215 20.2% 65.1%",
 
         "--border": "210 8% 9%",
@@ -73,6 +71,7 @@ export const shadcnPlugin = plugin(
     addBase({
       "*": {
         "@apply border-border": {},
+        "text-rendering": "geometric-precision"
       },
       body: {
         "@apply bg-background text-foreground": {},
@@ -143,13 +142,56 @@ export const shadcnPlugin = plugin(
             from: { height: "var(--radix-accordion-content-height)" },
             to: { height: "0" },
           },
+          "rebound": {
+            "0%": {
+              transform: "scale(0.95)",
+            },
+            "40%": {
+              transform: "scale(1.02)",
+            },
+            "80%": {
+              transform: "scale(0.98)",
+            },
+            "100%": {
+              transform: "scale(1)",
+            },
+          },
+          "appearance-in": {
+            "0%": {
+              opacity: "0",
+              transform: "translateZ(0)  scale(0.95)",
+            },
+            "60%": {
+              opacity: "0.75",
+              /* Avoid blurriness */
+              // backfaceVisibility: "hidden",
+              // webkitFontSmoothing: "antialiased",
+              transform: "translateZ(0) scale(1.05)",
+            },
+            "100%": {
+              opacity: "1",
+              transform: "translateZ(0) scale(1)",
+            },
+          },
+          "appearance-out": {
+            "0%": {
+              opacity: "1",
+              transform: "scale(1)",
+            },
+            "100%": {
+              opacity: "0",
+              transform: "scale(0.5)",
+            },
+          }
         },
         animation: {
           "accordion-down": "accordion-down 0.2s ease-out",
           "accordion-up": "accordion-up 0.2s ease-out",
+          "rebound": "rebound 0.3s ease-out",
+          "appearance-in": "appearance-in 0.3s ease-out",
+          "appearance-out": "appearance-out 0.1s ease-out",
         },
       },
     },
-    plugins: [animatePlugin],
   }
 )

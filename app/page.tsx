@@ -1,7 +1,12 @@
-import Link from "next/link"
-
-import { siteConfig } from "@/config/site"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export default function IndexPage() {
   return (
@@ -17,12 +22,25 @@ export default function IndexPage() {
         </p>
       </div>
       <div className="flex gap-4">
-        <Button variant={"default"}>Hello</Button>
+        <Button variant={"default"} className="hover:animate-appearance-in">
+          Hello
+        </Button>
         <Button variant={"destructive"}>Hello</Button>
         <Button variant={"ghost"}>Hello</Button>
         <Button variant={"link"}>Hello</Button>
         <Button variant={"outline"}>Hello</Button>
         <Button variant={"secondary"}>Hello</Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Billing</DropdownMenuItem>
+            <DropdownMenuItem>Team</DropdownMenuItem>
+            <DropdownMenuItem>Subscription</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </section>
   )
